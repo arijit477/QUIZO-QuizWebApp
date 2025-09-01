@@ -1,0 +1,234 @@
+/* Modern Instruction Component Styles with CSS Variables */
+.bootstrap-wrapper {
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--accent-secondary) 100%);
+  min-height: 100vh;
+  
+  padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark Mode Background */
+body.dark-theme .bootstrap-wrapper {
+  background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 50%, var(--accent-primary) 100%);
+}
+
+/* Side decorative elements */
+.bootstrap-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 200px;
+  height: 400px;
+  background: linear-gradient(135deg, rgb(255 255 255 / 15%) 0%, rgb(255 255 255 / 5%) 100%);
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 60%;
+  animation: float-side 15s ease-in-out infinite;
+  z-index: 0;
+  transform: translateY(-50%) rotate(-15deg);
+  backdrop-filter: blur(5px);
+}
+
+.bootstrap-wrapper::after {
+  content: '';
+  position:relative;
+  top: 30%;
+  right: 5%;
+  width: 250px;
+  height: 350px;
+  background: linear-gradient(135deg, var(--accent-primary-shadow) 0%, var(--accent-secondary-shadow) 100%);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: float-side 12s ease-in-out infinite reverse;
+  z-index: 0;
+  transform: translateY(-30%) rotate(20deg);
+  backdrop-filter: blur(5px);
+}
+
+/* Dark Mode decorative elements */
+body.dark-theme .bootstrap-wrapper::before {
+  background: linear-gradient(135deg, rgb(124 150 255 / 15%) 0%, rgb(124 150 255 / 5%) 100%);
+}
+
+body.dark-theme .bootstrap-wrapper::after {
+  background: linear-gradient(135deg, rgb(124 150 255 / 20%) 0%, rgb(157 109 227 / 10%) 100%);
+}
+
+@keyframes float-side {
+  0%, 100% { 
+    transform: translateY(-50%) rotate(-15deg) translateX(0);
+  }
+  33% { 
+    transform: translateY(-45%) rotate(-10deg) translateX(10px);
+  }
+  66% { 
+    transform: translateY(-55%) rotate(-20deg) translateX(-10px);
+  }
+}
+
+/* Card enhancements */
+mat-card {
+  border-radius: 16px !important;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+}
+
+mat-card-header.bg-primary {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%) !important;
+  color: white;
+}
+
+/* List item styling */
+mat-list-item {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  color: var(--text-primary);
+}
+
+mat-list-item span {
+  color: var(--text-primary) !important;
+}
+
+mat-list-item:hover {
+  background-color: var(--accent-primary-light) !important;
+  transform: translateX(4px);
+}
+
+/* Button enhancements */
+button[mat-raised-button] {
+  transition: all 0.3s ease;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px var(--accent-primary-shadow);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  color: white;
+}
+
+button[mat-raised-button]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--accent-primary-shadow-hover);
+}
+
+/* Badge styling */
+.badge.bg-primary {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%) !important;
+  min-width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+  color: white;
+}
+
+/* Loading spinner */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.25em;
+  color: var(--accent-primary);
+}
+
+/* Text color utilities */
+.text-primary {
+  color: var(--text-primary) !important; /* Ensure text is visible in dark mode */
+}
+
+body.dark-theme .text-primary {
+  color: var(--text-primary) !important; /* Ensure text is visible in dark mode */
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-dark {
+  color: var(--text-primary) !important;
+}
+
+.text-light {
+  color: var(--text-primary) !important;
+}
+
+.bg-light {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Dark mode specific adjustments */
+body.dark-theme .bg-light {
+  background-color: var(--bg-tertiary) !important;
+}
+
+body.dark-theme mat-list {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  .lead {
+    font-size: 1.1rem;
+  }
+  
+  mat-card-header {
+    padding: 1.5rem !important;
+  }
+  
+  mat-card-content {
+    padding: 1.5rem !important;
+  }
+}
+
+/* Animation for list items */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+mat-list-item {
+  animation: slideIn 0.3s ease forwards;
+}
+
+mat-list-item:nth-child(1) { animation-delay: 0.1s; }
+mat-list-item:nth-child(2) { animation-delay: 0.2s; }
+mat-list-item:nth-child(3) { animation-delay: 0.3s; }
+mat-list-item:nth-child(4) { animation-delay: 0.4s; }
+mat-list-item:nth-child(5) { animation-delay: 0.5s; }
+mat-list-item:nth-child(6) { animation-delay: 0.6s; }
+
+/* Theme Toggle Button */
+.theme-toggle-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.theme-toggle-btn {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  color: white;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px var(--accent-primary-shadow);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px var(--accent-primary-shadow-hover);
+}

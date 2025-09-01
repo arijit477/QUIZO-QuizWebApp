@@ -1,0 +1,200 @@
+/* Dark Theme Styles for Start Component */
+
+/* Timer section dark mode fixes */
+body.dark-theme .timer-card mat-card-header.bg-warning {
+  background: linear-gradient(135deg, var(--accent-warning-dark) 0%, var(--accent-warning-secondary-dark) 100%) !important;
+}
+
+body.dark-theme .timer-display {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .timer-card mat-card-subtitle.text-dark {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-theme .timer-card mat-card-subtitle.text-dark strong {
+  color: var(--text-primary) !important;
+}
+
+/* Results section dark mode fixes */
+body.dark-theme .result-stats .stat-item h3.text-primary,
+body.dark-theme .result-stats .stat-item h3.text-success,
+body.dark-theme .result-stats .stat-item h3.text-info {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .result-stats .stat-item p.text-muted {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-theme .performance-text .lead {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .performance-text .text-muted {
+  color: var(--text-secondary) !important;
+}
+
+body.dark-theme .performance-text .text-muted strong {
+  color: var(--text-primary) !important;
+}
+
+/* Quiz header dark mode fixes */
+body.dark-theme .quiz-header h1.text-white {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .quiz-header h2.text-muted {
+  color: var(--text-secondary) !important;
+}
+
+/* Loading state dark mode fixes */
+body.dark-theme .text-muted {
+  color: var(--text-secondary) !important;
+}
+
+/* Card action buttons dark mode */
+body.dark-theme mat-card-actions.bg-light {
+  background: var(--bg-secondary) !important;
+}
+
+/* Instructions section dark mode fixes */
+body.dark-theme .instruction-list mat-list-item {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .instruction-list mat-list-item span {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .instruction-list mat-list-item strong {
+  color: var(--text-primary) !important;
+}
+
+/* Radio button options dark mode fixes */
+body.dark-theme .mat-radio-button {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme .mat-radio-button .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+  font-weight: 500 !important;
+}
+
+body.dark-theme .mat-radio-button.mat-radio-checked .mat-radio-label-content {
+  color: var(--accent-primary) !important;
+  font-weight: 600 !important;
+}
+
+body.dark-theme .mat-radio-button .mat-radio-outer-circle {
+  border-color: var(--text-primary) !important;
+}
+
+body.dark-theme .mat-radio-button .mat-radio-inner-circle {
+  background-color: var(--accent-primary) !important;
+}
+
+body.dark-theme .mat-radio-button.mat-radio-checked .mat-radio-outer-circle {
+  border-color: var(--accent-primary) !important;
+}
+
+/* Additional specific selectors to ensure white text in dark mode */
+body.dark-theme .option-button {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme .option-button .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme ::ng-deep .mat-radio-button .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme ::ng-deep .mat-radio-button {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme .mat-radio-group .mat-radio-button .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme .options-grid .mat-radio-button .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme ::ng-deep .option-button .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme ::ng-deep .option-button {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme ::ng-deep .mat-radio-group .mat-radio-button .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme ::ng-deep .options-grid .mat-radio-button .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+/* Even more specific selectors */
+body.dark-theme ::ng-deep .mat-radio-group ::ng-deep .mat-radio-button ::ng-deep .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme ::ng-deep .options-grid ::ng-deep .mat-radio-button ::ng-deep .mat-radio-label-content {
+  color: #ffffff !important;  /* Explicitly set to white */
+}
+
+body.dark-theme .option-button.mat-radio-checked {
+  background: linear-gradient(135deg, var(--accent-primary-light) 0%, var(--accent-secondary-light) 100%) !important;
+  border-color: var(--accent-primary) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+}
+
+body.dark-theme .option-button.mat-radio-checked::before {
+  color: var(--accent-primary) !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+body.dark-theme .option-button.mat-radio-focused {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 0 3px var(--accent-primary-shadow) !important;
+}
+
+/* Ensure option text is properly visible with higher specificity */
+body.dark-theme .mat-radio-group .mat-radio-button .mat-radio-label-content {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .mat-radio-group .mat-radio-button.mat-radio-checked .mat-radio-label-content {
+  color: var(--accent-primary) !important;
+}
+
+/* Question content dark mode fixes */
+body.dark-theme .question-content {
+  color: var(--text-primary) !important;
+}
+
+body.dark-theme .question-number {
+  color: var(--text-primary) !important;
+}
+
+/* Additional dark mode variables for start component */
+body.dark-theme {
+  --accent-warning-dark: #f59e0b;
+  --accent-warning-secondary-dark: #d97706;
+  --accent-success-dark: #10b981;
+  --accent-success-secondary-dark: #059669;
+  --accent-info-dark: #3b82f6;
+  --accent-info-secondary-dark: #2563eb;
+}
+body.dark-theme {
+  background-color: #121212; /* Set a dark background color */
+  --text-primary: #ffffff;  /* bright text for dark bg */
+  --text-muted: #bbbbbb;    /* softer text */
+}

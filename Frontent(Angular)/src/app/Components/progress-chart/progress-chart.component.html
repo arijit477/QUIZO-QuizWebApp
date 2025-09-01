@@ -1,0 +1,69 @@
+<div class="progress-chart-container">
+  <!-- Chart Type Selector -->
+  <div class="chart-controls" *ngIf="progressData.length > 0">
+    <div class="chart-type-buttons">
+      <button
+        class="chart-type-btn"
+        [class.active]="chartType === 'performance'"
+        (click)="switchChartType('performance')">
+        📈 Performance
+      </button>
+      <button
+        class="chart-type-btn"
+        [class.active]="chartType === 'category'"
+        (click)="switchChartType('category')">
+        📊 Categories
+      </button>
+      <button
+        class="chart-type-btn"
+        [class.active]="chartType === 'difficulty'"
+        (click)="switchChartType('difficulty')">
+        🎯 Difficulty
+      </button>
+      <button
+        class="chart-type-btn"
+        [class.active]="chartType === 'timeline'"
+        (click)="switchChartType('timeline')">
+        📅 Timeline
+      </button>
+    </div>
+  </div>
+
+  <!-- Chart Canvas -->
+  <div class="chart-wrapper" *ngIf="progressData.length > 0">
+    <div class="chart-container" [style]="getChartContainerStyle()">
+      <canvas #chartCanvas></canvas>
+    </div>
+  </div>
+
+  <!-- No Data State -->
+  <div class="no-data-state" *ngIf="progressData.length === 0">
+    <div class="no-data-icon">📊</div>
+    <h3>No Progress Data Yet</h3>
+    <p>Complete some quizzes to see your progress analytics here!</p>
+    <div class="no-data-hint">
+      <span class="hint-icon">💡</span>
+      <span>Your quiz performance will be visualized once you start taking quizzes.</span>
+    </div>
+  </div>
+
+  <!-- Chart Statistics Summary -->
+  <div class="chart-stats" *ngIf="progressData.length > 0">
+    <div class="stat-item">
+      <div class="stat-label">Total Quizzes</div>
+      <div class="stat-value">{{ progressSummary.totalQuizzes }}</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Average Score</div>
+      <div class="stat-value">{{ progressSummary.averageScore }}%</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Best Score</div>
+      <div class="stat-value">{{ progressSummary.bestScore }}%</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">Time Spent</div>
+      <div class="stat-value">{{ progressService.formatTimeSpent(progressSummary.totalTimeSpent) }}</div>
+    </div>
+  </div>
+</div>

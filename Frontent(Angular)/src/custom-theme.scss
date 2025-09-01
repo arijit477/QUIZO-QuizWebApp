@@ -1,0 +1,14 @@
+// Always start with core
+@use '@angular/material' as mat;
+
+html {
+  
+  @include mat.theme((
+    color: mat.$rose-palette,
+    typography: Roboto,
+   
+  ));
+}
+
+// Dark theme styles will be handled by the CSS in styles.css
+// Angular Material components will automatically adapt to the dark-theme class

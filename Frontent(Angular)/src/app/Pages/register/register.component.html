@@ -1,0 +1,110 @@
+<!-- Modern Register Page with Enhanced Graphics -->
+<div class="register-container">
+  <!-- Gradient Background Elements -->
+  <div class="register-orb register-orb-1"></div>
+  <div class="register-orb register-orb-2"></div>
+  <div class="register-orb register-orb-3"></div>
+  
+  <!-- Side Decorative Elements -->
+  <div class="register-side-element register-side-element-left-1"></div>
+  <div class="register-side-element register-side-element-left-2"></div>
+  <div class="register-side-element register-side-element-right-1"></div>
+  <div class="register-side-element register-side-element-right-2"></div>
+  
+  <!-- Particle Effects -->
+  <div class="register-particle"></div>
+  <div class="register-particle"></div>
+  <div class="register-particle"></div>
+  <div class="register-particle"></div>
+  <div class="register-particle"></div>
+  
+  <div class="register-content">
+    <div class="register-header">
+      <h1 class="register-title">
+        Join <span class="highlight">QuizO</span> Community
+      </h1>
+      <p class="register-subtitle">
+        Create your account and start your knowledge journey today. 
+        Join thousands of learners already using QuizO.
+      </p>
+    </div>
+
+    <div class="register-card">
+      <mat-card appearance="outlined" class="modern-card">
+        <form (ngSubmit)="onSubmit()" class="register-form">
+          <div class="form-grid">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input [(ngModel)]="user.username" matInput name="Username" required placeholder="Choose a username" />
+              <mat-hint class="hint-text">Username must be unique!</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input 
+                [(ngModel)]="user.password" 
+                name="Password" 
+                [type]="hidePassword ? 'password' : 'text'" 
+                required 
+                matInput 
+                placeholder="Create a password" 
+              />
+              <button 
+                mat-icon-button 
+                matSuffix 
+                (click)="togglePasswordVisibility()" 
+                [attr.aria-label]="'Hide password'" 
+                [attr.aria-pressed]="hidePassword"
+                type="button"
+              >
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input [(ngModel)]="user.firstName" name="Firstname" required matInput placeholder="Enter your first name" />
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input [(ngModel)]="user.lastName" name="Lastname" required matInput placeholder="Enter your last name" />
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input [(ngModel)]="user.email" type="email" name="Email" required matInput placeholder="Enter your email" />
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Phone</mat-label>
+              <input [(ngModel)]="user.phone" name="Phone" required matInput placeholder="Enter your phone number" />
+            </mat-form-field>
+          </div>
+
+          <div class="form-actions">
+            <button mat-flat-button type="submit" class="btn btn-primary btn-large">
+              Create Account
+            </button>
+            <button mat-flat-button type="button" class="btn btn-outline" (click)="clearForm()">
+              Clear Form
+            </button>
+          </div>
+
+          <div class="register-footer">
+            <p>Already have an account? <a routerLink="/login" class="login-link">Sign In</a></p>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Floating Graphics -->
+  <div class="floating-graphics">
+    <span class="float-icon">🎓</span>
+    <span class="float-icon">📚</span>
+    <span class="float-icon">🏆</span>
+    <span class="float-icon">🧠</span>
+  </div>
+</div>
+

@@ -1,0 +1,211 @@
+<div class="bootstrap-wrapper quiz-container" *ngIf="!isSubmit" [@fadeIn]>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Left Sidebar - Instructions -->
+      <div class="col-md-3">
+        <mat-card class="mt-4 p-3 shadow-lg rounded-xl sidebar-card">
+          <mat-card-header class="bg-primary text-white p-3 rounded-top">
+            <mat-card-title>
+              <h4 class="mb-0">📘 Quiz Instructions</h4>
+            </mat-card-title>
+          </mat-card-header>
+          
+          <mat-card-content class="mt-3">
+            <mat-list class="instruction-list">
+              <mat-list-item class="mb-2">
+                <span matListItemIcon>📝</span>
+                <span><strong>{{ questions[0]?.quiz?.title }}</strong></span>
+              </mat-list-item>
+              <mat-list-item class="mb-2">
+                <span matListItemIcon>❓</span>
+                <span>Questions: <strong>{{ questions.length }}</strong></span>
+              </mat-list-item>
+              <mat-list-item class="mb-2">
+                <span matListItemIcon>⏳</span>
+                <span>Time: <strong>{{ questions.length * 2 }} minutes</strong></span>
+              </mat-list-item>
+              <mat-list-item class="mb-2">
+                <span matListItemIcon>✅</span>
+                <span>Select <strong>one answer</strong> per question</span>
+              </mat-list-item>
+              <mat-list-item class="mb-2">
+                <span matListItemIcon>🔒</span>
+                <span>Answers <strong>cannot be changed</strong> after submit</span>
+              </mat-list-item>
+              <mat-list-item class="mb-2">
+                <span matListItemIcon>⏰</span>
+                <span>Auto-submit at <strong>00:00:00</strong></span>
+              </mat-list-item>
+              <mat-list-item class="mb-2">
+                <span matListItemIcon>⚡</span>
+                <span>Don't refresh - timer continues</span>
+              </mat-list-item>
+              <mat-list-item>
+                <span matListItemIcon>⭐</span>
+                <span>No negative marking</span>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Main Content - Questions -->
+      <div class="col-md-6">
+        <!-- Quiz Header -->
+        <div class="quiz-header text-center mb-4">
+          <h1 class="display-5 fw-bold text-white mt-4">
+            🎯 On Going Quiz
+          </h1>
+          <h2 class="h3 text-muted ">{{ questions[0]?.quiz?.title }}</h2>
+        </div>
+
+        <!-- Loading State -->
+        <ng-container *ngIf="!questions || questions.length === 0">
+          <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3 text-muted">Loading questions...</p>
+          </div>
+        </ng-container>
+
+        <!-- Questions List -->
+        <ng-container *ngIf="questions.length > 0">
+<mat-card *ngFor="let item of questions; let i = index" class="mb-4 question-card" [@fadeIn]>
+            <mat-card-content class="p-4">
+              <div class="question-header">
+                <span class="question-number badge bg-primary">Q{{i + 1}}</span>
+                <div class="question-content" [innerHTML]="item.content"></div>
+              </div>
+
+              <mat-divider class="my-3"></mat-divider>
+
+              <!-- Options -->
+              <div class="options-grid">
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <label class="option-button" [class.checked]="item.givenAns === item.option1">
+                      <input type="radio" [value]="item.option1" (click)="updateOptionButtonState(item, item.option1)" [name]="'question' + i" class="radio-input" [checked]="item.givenAns === item.option1">
+                      {{item.option1}}
+                    </label>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <label class="option-button" [class.checked]="item.givenAns === item.option2">
+                      <input type="radio" [value]="item.option2" (click)="updateOptionButtonState(item, item.option2)" [name]="'question' + i" class="radio-input" [checked]="item.givenAns === item.option2">
+                      {{item.option2}}
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <label class="option-button" [class.checked]="item.givenAns === item.option3">
+                      <input type="radio" [value]="item.option3" (click)="updateOptionButtonState(item, item.option3)" [name]="'question' + i" class="radio-input" [checked]="item.givenAns === item.option3">
+                      {{item.option3}}
+                    </label>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <label class="option-button" [class.checked]="item.givenAns === item.option4">
+                      <input type="radio" [value]="item.option4" (click)="updateOptionButtonState(item, item.option4)" [name]="'question' + i" class="radio-input" [checked]="item.givenAns === item.option4">
+                      {{item.option4}}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- Submit Button -->
+          <div class="text-center mt-4 mb-5">
+<button (click)="submitQuiz()" mat-raised-button color="primary" class="submit-btn px-5 py-3" aria-label="Submit Quiz">
+              🚀 Submit Quiz
+            </button>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Right Sidebar - Timer -->
+      <div class="col-md-3">
+        <mat-card class="mt-4 p-3 shadow-lg rounded-xl timer-card">
+          <mat-card-header class="bg-warning text-dark p-3 rounded-top">
+            <mat-card-title><b>⏰ Timer</b></mat-card-title>
+            <mat-card-subtitle class="text-dark">
+              Auto-submit at <strong>00:00:00</strong>
+            </mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content class="text-center py-4">
+            <h1 class="display-4 fw-bold text-primary timer-display">
+              {{getFormattedTime()}}
+            </h1>
+            
+            <mat-progress-spinner 
+              mode="determinate" 
+              class="mx-auto mt-3"
+              diameter="80"
+              [value]="questions.length > 0 ? (timer / (questions.length * 2 * 60)) * 100 : 0">
+            </mat-progress-spinner>
+            
+            <p class="text-muted mt-3 small">
+              Time remaining: {{ timer / 60 | number:'1.0-0' }} minutes
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Results Section -->
+<div class="bootstrap-wrapper result-container" *ngIf="isSubmit">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <mat-card class="shadow-lg border-0 result-card">
+          <mat-card-header class="bg-success text-white p-4 rounded-top">
+            <mat-card-title class="h2 mb-0">
+              🎉 Quiz Results
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="p-4 text-center">
+            <div class="result-stats">
+              <div class="stat-item">
+                <h3 class="display-4 fw-bold text-primary">{{marksGot.toFixed(2)}}</h3>
+                <p class="text-muted">Total Marks</p>
+              </div>
+              <div class="stat-item">
+                <h3 class="display-4 fw-bold text-success">{{correctAns}}</h3>
+                <p class="text-muted">Correct Answers</p>
+              </div>
+              <div class="stat-item">
+                <h3 class="display-4 fw-bold text-info">{{attempted}}</h3>
+                <p class="text-muted">Questions Attempted</p>
+              </div>
+            </div>
+
+            <mat-divider class="my-4"></mat-divider>
+
+            <div class="performance-text">
+              <h4 class="mb-3">Performance Summary</h4>
+              <p class="lead">
+                You answered <strong>{{correctAns}}</strong> out of <strong>{{questions.length}}</strong> questions correctly.
+              </p>
+              <p class="text-muted">
+                Score: <strong>{{marksGot.toFixed(2)}}</strong> / <strong>{{questions[0]?.quiz?.maxMarks}}</strong>
+              </p>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions class="p-4 text-center bg-light">
+            <button mat-raised-button class="me-3 px-4">
+              📄 Print Results
+            </button>
+            <button mat-raised-button color="primary" routerLink="/user-dashboard/0" class="px-4">
+              🏠 Back to Home
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

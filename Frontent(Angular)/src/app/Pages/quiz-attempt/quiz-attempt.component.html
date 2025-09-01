@@ -1,0 +1,24 @@
+<mat-card *ngIf="currentQuestionIndex < questions.length; else quizComplete">
+  <mat-card-content>
+    <h2>Question {{currentQuestionIndex + 1}} of {{questions.length}}</h2>
+    <p>{{questions[currentQuestionIndex].question}}</p>
+    <div *ngFor="let option of questions[currentQuestionIndex].options; let i = index">
+      <button mat-raised-button color="primary" [class.selected]="selectedOptionIndex === i" (click)="selectOption(i)">
+        {{option}}
+      </button>
+    </div>
+    <div class="submit-button">
+      <button mat-raised-button color="accent" (click)="submitAnswer()">Submit Answer</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #quizComplete>
+  <mat-card>
+    <mat-card-content>
+      <h2>Quiz Completed!</h2>
+      <p>Thank you for completing the quiz.</p>
+      <button mat-raised-button color="primary" routerLink="/user-profile">Go to Profile</button>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

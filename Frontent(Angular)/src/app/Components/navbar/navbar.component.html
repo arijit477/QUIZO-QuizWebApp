@@ -1,0 +1,192 @@
+<ng-container *ngIf="isLoggedIn && !hideNavbar">
+  <!-- Modern Navbar -->
+  <nav class="modern-navbar">
+    <div class="nav-container">
+      <!-- Logo Section -->
+      <div class="logo-section">
+        <a
+          routerLink="/user-dashboard/0"
+          routerLinkActive="active"
+          class="logo-link"
+          aria-label="QuizO Home"
+        >
+          <img src="../../../assets/logo3.jpg" alt="QuizO Logo" class="logo-img">
+          <span class="logo-text">QuizO</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="nav-menu">
+        <div class="nav-items">
+          
+          <!-- Categories Dropdown -->
+          <div class="nav-dropdown">
+            <button class="nav-link dropdown-toggle">
+              <mat-icon>category</mat-icon>
+              <span>Categories</span>
+              <mat-icon class="dropdown-arrow">expand_more</mat-icon>
+            </button>
+            <div class="dropdown-content">
+              <div *ngFor="let category of categories" class="dropdown-item">
+                <a
+                  [routerLink]="'/user-dashboard/' + category.cid"
+                  class="dropdown-link"
+                  role="button"
+                >
+                  {{ category.title }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Actions -->
+        <div class="user-actions">
+          <!-- Not Logged In -->
+          <div *ngIf="!isLoggedIn" class="auth-buttons">
+            <a
+              [routerLink]="'/login'"
+              routerLinkActive="active"
+              class="btn btn-outline"
+            >
+              <mat-icon>login</mat-icon>
+              Login
+            </a>
+            <a
+              routerLink="/register"
+              routerLinkActive="router-link-active"
+              class="btn btn-primary"
+            >
+              <mat-icon>person_add</mat-icon>
+              Register
+            </a>
+          </div>
+
+          <!-- Logged In -->
+          <div *ngIf="isLoggedIn" class="user-menu">
+            <!-- Theme Toggle Button -->
+            <button (click)="toggleTheme()" class="btn btn-outline theme-toggle" [disabled]="router.url === '/' || router.url === '/login' || router.url === '/register'">
+              <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+              <span>{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+            </button>
+            
+            <div class="user-profile">
+              <a
+                routerLink="/user-dashboard/profile"
+                routerLinkActive="router-link-active"
+                class="user-link"
+              >
+                <div class="user-avatar">
+                  <mat-icon>account_circle</mat-icon>
+                </div>
+                <span class="username">{{ user.username }}</span>
+              </a>
+            </div>
+            <button
+              (click)="logout()"
+              class="btn btn-outline logout-btn"
+              [disabled]="isLoggingOut"
+            >
+              <mat-icon *ngIf="!isLoggingOut">logout</mat-icon>
+              <mat-icon *ngIf="isLoggingOut" class="spinner">autorenew</mat-icon>
+              <span>{{ isLoggingOut ? 'Logging out...' : 'Logout' }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-toggle" (click)="toggleMobileMenu()">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" [class.active]="mobileMenuOpen">
+      <div class="mobile-menu-content">
+        <a
+          routerLink="/user-dashboard/0"
+          routerLinkActive="active"
+          class="mobile-nav-link"
+          (click)="closeMobileMenu()"
+        >
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </a>
+
+        <!-- Mobile Categories -->
+        <div class="mobile-categories">
+          <div class="mobile-category-header" (click)="toggleMobileCategories()">
+            <mat-icon>category</mat-icon>
+            <span>Categories</span>
+            <mat-icon class="mobile-dropdown-arrow">expand_more</mat-icon>
+          </div>
+          <div class="mobile-category-items" [class.active]="mobileCategoriesOpen">
+            <div *ngFor="let category of categories" class="mobile-category-item">
+              <a
+                [routerLink]="'/user-dashboard/' + category.cid"
+                class="mobile-category-link"
+                (click)="closeMobileMenu()"
+                role="button"
+              >
+                {{ category.title }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Auth Buttons -->
+        <div *ngIf="!isLoggedIn" class="mobile-auth-buttons">
+          <a
+            [routerLink]="'/login'"
+            routerLinkActive="active"
+            class="btn btn-outline mobile-btn"
+            (click)="closeMobileMenu()"
+          >
+            <mat-icon>login</mat-icon>
+            Login
+          </a>
+          <a
+            routerLink="/register"
+            routerLinkActive="router-link-active"
+            class="btn btn-primary mobile-btn"
+            (click)="closeMobileMenu()"
+          >
+            <mat-icon>person_add</mat-icon>
+            Register
+          </a>
+        </div>
+
+        <!-- Mobile User Menu -->
+        <div *ngIf="isLoggedIn" class="mobile-user-menu">
+          <!-- Mobile Theme Toggle Button -->
+          <button (click)="toggleTheme(); closeMobileMenu()" class="btn btn-outline mobile-btn theme-toggle" [disabled]="router.url === '/' || router.url === '/login' || router.url === '/register'">
+            <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+            <span>{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+          </button>
+          
+          <a
+            routerLink="/admin-dashboard/profile"
+            routerLinkActive="router-link-active"
+            class="mobile-user-link"
+            (click)="closeMobileMenu()"
+          >
+            <mat-icon>account_circle</mat-icon>
+            <span>{{ user.username }}</span>
+          </a>
+          <button
+            (click)="logout(); closeMobileMenu()"
+            class="btn btn-outline mobile-btn logout-btn"
+            [disabled]="isLoggingOut"
+          >
+            <mat-icon *ngIf="!isLoggingOut">logout</mat-icon>
+            <mat-icon *ngIf="isLoggingOut" class="spinner">autorenew</mat-icon>
+            <span>{{ isLoggingOut ? 'Logging out...' : 'Logout' }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</ng-container>

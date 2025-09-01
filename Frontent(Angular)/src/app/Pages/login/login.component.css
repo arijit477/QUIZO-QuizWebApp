@@ -1,0 +1,483 @@
+/* Modern Login Page Styles with Enhanced Graphics */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+/* High Opacity Gradient Background */
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 193, 7, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 60% 60%, rgba(32, 201, 151, 0.2) 0%, transparent 50%);
+  z-index: 1;
+}
+
+/* Side Decorative Elements */
+.login-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(102,126,234,0.15)"/></svg>'),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="30,0 70,0 100,30 100,70 70,100 30,100 0,70 0,30" fill="rgba(255,193,7,0.12)"/></svg>'),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 Q40,0 60,20 T100,20" stroke="rgba(102,126,234,0.1)" fill="none" stroke-width="2"/></svg>'),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="80" r="15" fill="rgba(255,193,7,0.08)"/></svg>'),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M80,80 Q60,100 40,80 T0,80" stroke="rgba(32,201,151,0.1)" fill="none" stroke-width="2"/></svg>'),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="80" cy="20" r="12" fill="rgba(118,75,162,0.08)"/></svg>');
+  background-size: 
+    150px 150px, 
+    120px 120px,
+    200px 200px,
+    80px 80px,
+    200px 200px,
+    60px 60px;
+  background-position: 
+    20% 30%, 
+    80% 70%,
+    5% 25%,
+    8% 75%,
+    95% 75%,
+    92% 25%;
+  background-repeat: no-repeat;
+  animation: floatBackground 25s ease-in-out infinite;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+@keyframes floatBackground {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(-10px, 5px) rotate(2deg);
+  }
+  66% {
+    transform: translate(5px, -8px) rotate(-1deg);
+  }
+}
+
+/* High Opacity Floating Gradient Orbs */
+.login-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: floatOrb 10s ease-in-out infinite;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.login-orb-1 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.45) 0%, transparent 65%);
+  top: 15%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.login-orb-2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 193, 7, 0.4) 0%, transparent 65%);
+  bottom: 25%;
+  right: 20%;
+  animation-delay: 3s;
+}
+
+.login-orb-3 {
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(32, 201, 151, 0.35) 0%, transparent 65%);
+  top: 55%;
+  left: 65%;
+  animation-delay: 6s;
+}
+
+/* Side Decorative Floating Elements */
+.login-side-element {
+  position: absolute;
+  z-index: 1;
+  animation: floatSideElement 8s ease-in-out infinite;
+}
+
+.login-side-element-left-1 {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 20%;
+  left: 5%;
+  filter: blur(15px);
+  animation-delay: 0s;
+}
+
+.login-side-element-left-2 {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(255, 193, 7, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: 30%;
+  left: 3%;
+  filter: blur(12px);
+  animation-delay: 2s;
+}
+
+.login-side-element-right-1 {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle, rgba(118, 75, 162, 0.18) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 25%;
+  right: 4%;
+  filter: blur(18px);
+  animation-delay: 1s;
+}
+
+.login-side-element-right-2 {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, rgba(32, 201, 151, 0.16) 0%, transparent 70%);
+  border-radius: 50%;
+  bottom: 35%;
+  right: 6%;
+  filter: blur(14px);
+  animation-delay: 3s;
+}
+
+@keyframes floatSideElement {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  33% {
+    transform: translate(5px, -8px) scale(1.05);
+    opacity: 0.9;
+  }
+  66% {
+    transform: translate(-3px, 6px) scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(20px, -15px) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+/* High Visibility Particle Effects */
+.login-particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  animation: floatParticle 8s ease-in-out infinite;
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.login-particle:nth-child(1) { width: 7px; height: 7px; top: 25%; left: 25%; animation-delay: 0s; }
+.login-particle:nth-child(2) { width: 6px; height: 6px; top: 65%; right: 30%; animation-delay: 2s; }
+.login-particle:nth-child(3) { width: 8px; height: 8px; bottom: 35%; left: 20%; animation-delay: 4s; }
+.login-particle:nth-child(4) { width: 6px; height: 6px; top: 15%; right: 15%; animation-delay: 1s; }
+.login-particle:nth-child(5) { width: 7px; height: 7px; bottom: 25%; right: 35%; animation-delay: 3s; }
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(15px, -10px);
+    opacity: 0.8;
+  }
+}
+
+.login-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.login-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-subtitle {
+  font-size: 1.25rem;
+  color: #666;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.login-card {
+  display: flex;
+  justify-content: center;
+}
+
+.modern-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-radius: 20px !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 0 80px rgba(102, 126, 234, 0.25) !important;
+  border: none !important;
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+}
+
+.modern-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-form {
+  padding: 2.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Button Styles */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+  text-align: center;
+  
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #ff006e;
+  border: 2px solid #ff006e;
+}
+
+.btn-outline:hover {
+  background: #ff006e;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+.login-footer {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.login-footer p {
+  color: #666;
+  margin: 0;
+}
+
+.register-link {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* Floating Graphics */
+.floating-graphics {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.float-icon {
+  position: absolute;
+  font-size: 2.8rem;
+  animation: floatIcon 5s ease-in-out infinite;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.float-icon:nth-child(1) { 
+  top: 25%; 
+  left: 15%; 
+  animation-delay: 0s; 
+  color: #667eea;
+}
+.float-icon:nth-child(2) { 
+  top: 15%; 
+  right: 25%; 
+  animation-delay: 1.5s; 
+  color: #ff6b6b;
+}
+.float-icon:nth-child(3) { 
+  bottom: 35%; 
+  left: 10%; 
+  animation-delay: 3s; 
+  color: #20c997;
+}
+.float-icon:nth-child(4) { 
+  bottom: 25%; 
+  right: 15%; 
+  animation-delay: 2s; 
+  color: #ffc107;
+}
+
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate(10px, -8px) rotate(5deg) scale(1.1);
+  }
+  66% {
+    transform: translate(-5px, 6px) rotate(-3deg) scale(0.95);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 1rem;
+  }
+  
+  .login-title {
+    font-size: 2.5rem;
+  }
+  
+  .login-form {
+    padding: 1.5rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .floating-graphics {
+    display: none;
+  }
+  
+  .login-orb,
+  .login-side-element,
+  .login-particle {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-title {
+    font-size: 2rem;
+  }
+  
+  .login-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .login-form {
+    padding: 1rem;
+  }
+  
+  .modern-card {
+    max-width: 100%;
+  }
+}

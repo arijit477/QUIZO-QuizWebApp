@@ -1,0 +1,93 @@
+<!-- Modern Login Page with Enhanced Graphics -->
+<div class="login-container">
+  <!-- Gradient Background Elements -->
+  <div class="login-orb login-orb-1"></div>
+  <div class="login-orb login-orb-2"></div>
+  <div class="login-orb login-orb-3"></div>
+  
+  <!-- Side Decorative Elements -->
+  <div class="login-side-element login-side-element-left-1"></div>
+  <div class="login-side-element login-side-element-left-2"></div>
+  <div class="login-side-element login-side-element-right-1"></div>
+  <div class="login-side-element login-side-element-right-2"></div>
+  
+  <!-- Particle Effects -->
+  <div class="login-particle"></div>
+  <div class="login-particle"></div>
+  <div class="login-particle"></div>
+  <div class="login-particle"></div>
+  <div class="login-particle"></div>
+  
+  <div class="login-content">
+    <div class="login-header">
+      <h1 class="login-title">
+        Welcome Back to <span class="highlight">QuizO</span>
+      </h1>
+      <p class="login-subtitle">
+        Sign in to continue your learning journey and access your personalized dashboard
+      </p>
+    </div>
+
+    <div class="login-card">
+      <mat-card appearance="outlined" class="modern-card">
+        <form (ngSubmit)="formSubmit()" class="login-form">
+          <div class="form-grid">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                [(ngModel)]="loginData.username"
+                name="username"
+                matInput
+                required
+                placeholder="Enter your username"
+              />
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                [(ngModel)]="loginData.password"
+                name="password"
+                [type]="hidePassword ? 'password' : 'text'"
+                required
+                matInput
+                placeholder="Enter your password"
+              />
+              <button 
+                mat-icon-button 
+                matSuffix 
+                (click)="togglePasswordVisibility()" 
+                [attr.aria-label]="'Hide password'" 
+                [attr.aria-pressed]="hidePassword"
+                type="button"
+              >
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <div class="form-actions">
+            <button mat-flat-button type="submit" class="btn btn-primary btn-large">
+              Sign In
+            </button>
+            <button mat-flat-button type="reset" class="btn btn-outline">
+              Reset
+            </button>
+          </div>
+
+          <div class="login-footer">
+            <p>Don't have an account? <a routerLink="/register" class="register-link">Create Account</a></p>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Floating Graphics -->
+  <div class="floating-graphics">
+    <span class="float-icon">🔐</span>
+    <span class="float-icon">📊</span>
+    <span class="float-icon">🎯</span>
+    <span class="float-icon">🚀</span>
+  </div>
+</div>

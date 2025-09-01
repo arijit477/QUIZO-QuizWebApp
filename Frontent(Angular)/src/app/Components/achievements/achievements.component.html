@@ -1,0 +1,42 @@
+<div class="achievements-container">
+  <h2 class="achievements-title">Achievements</h2>
+
+  <div class="achievements-grid">
+    <div
+      *ngFor="let achievement of achievements"
+      class="achievement-card"
+      [ngClass]="{'unlocked': achievement.unlocked, 'locked': !achievement.unlocked}"
+    >
+      <div class="achievement-icon">
+        <i [class]="getIconClass(achievement.icon)"></i>
+      </div>
+
+      <div class="achievement-content">
+        <h3 class="achievement-title">{{ achievement.title }}</h3>
+        <p class="achievement-description">{{ achievement.description }}</p>
+
+        <div class="achievement-progress" *ngIf="!achievement.unlocked && achievement.maxProgress && achievement.maxProgress > 1">
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              [style.width.%]="(achievement.progress || 0) / achievement.maxProgress * 100"
+            ></div>
+          </div>
+          <span class="progress-text">
+            {{ achievement.progress || 0 }} / {{ achievement.maxProgress }}
+          </span>
+        </div>
+
+        <div class="achievement-unlocked-date" *ngIf="achievement.unlocked && achievement.unlockedDate">
+          <small>Unlocked: {{ formatDate(achievement.unlockedDate) }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="achievements-stats" *ngIf="achievements.length > 0">
+    <p>
+      <strong>{{ getUnlockedCount() }}</strong> of <strong>{{ achievements.length }}</strong> achievements unlocked
+    </p>
+  </div>
+</div>

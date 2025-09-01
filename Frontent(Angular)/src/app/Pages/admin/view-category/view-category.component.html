@@ -1,0 +1,17 @@
+<mat-card>
+  <h1 style="padding-bottom: 15px;">All Categories</h1>
+  <mat-list>
+    @for (item of categories; track item) {
+    <mat-list-item>
+      <mat-icon matListItemIcon>category</mat-icon>
+      <span matListItemTitle>{{ item.title }}</span>
+      <span matListItemLine>{{ item.description }}</span>
+      
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    }
+  </mat-list>
+  
+  <div class="example-button-row  mb-20 mt-20 ml-20 ">
+    <button routerLink="/admin-dashboard/add-category"  mat-flat-button>Add Category</button></div>
+</mat-card>

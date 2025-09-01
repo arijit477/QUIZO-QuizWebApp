@@ -1,0 +1,162 @@
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    
+    <!-- Search Bar - Moved to top -->
+    <div class="search-container mb-4" *ngIf="!isLoading && quizzes && quizzes.length > 0">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="search-box">
+            <div class="input-group">
+              <input 
+                type="text" 
+                class="form-control search-input" 
+                placeholder="Search quizzes by title or description..." 
+                [(ngModel)]="searchQuery"
+                (input)="onSearch()"
+                aria-label="Search quizzes"
+              >
+              <button 
+                class="btn btn-outline-secondary search-clear" 
+                type="button" 
+                (click)="clearSearch()"
+                *ngIf="searchQuery"
+                aria-label="Clear search"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+              <button 
+                class="input-group-text search-icon" 
+                type="button"
+                (click)="onSearch()"
+                aria-label="Search quizzes"
+              >
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section with Cool Text -->
+    <div class="hero-section text-center mb-5">
+      <h1 class="hero-title">Challenge Your Mind</h1>
+      <p class="hero-subtitle">Discover, Learn, and Excel with Our Interactive Quizzes</p>
+      <div class="hero-decoration">
+        <span class="decoration-dot dot-1"></span>
+        <span class="decoration-dot dot-2"></span>
+        <span class="decoration-dot dot-3"></span>
+      </div>
+    </div>
+
+    <!-- Bootstrap Carousel - Fresh Implementation -->
+    <div class="carousel-container">
+      <div id="quizHeroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#quizHeroCarousel" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#quizHeroCarousel" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#quizHeroCarousel" data-bs-slide-to="2"></button>
+          <button type="button" data-bs-target="#quizHeroCarousel" data-bs-slide-to="3"></button>
+        </div>
+        
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <img src="assets/logo1.jpg" class="d-block w-100" alt="Learning Journey">
+            <div class="carousel-caption">
+              <h3>Expand Your Knowledge</h3>
+              <p>Test your skills and learn something new every day</p>
+            </div>
+          </div>
+          
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <img src="assets/logo3.jpg" class="d-block w-100" alt="Brain Challenge">
+            <div class="carousel-caption">
+              <h3>Brain Training</h3>
+              <p>Keep your mind sharp with challenging questions</p>
+            </div>
+          </div>
+          
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <img src="assets/logo4.jpg" class="d-block w-100" alt="Success Growth">
+            <div class="carousel-caption">
+              <h3>Achieve Excellence</h3>
+              <p>Track your progress and celebrate your achievements</p>
+            </div>
+          </div>
+          
+          <!-- Slide 4 -->
+          <div class="carousel-item">
+            <img src="assets/quiz.png" class="d-block w-100" alt="Interactive Learning">
+            <div class="carousel-caption">
+              <h3>Interactive Learning</h3>
+              <p>Engage with fun and educational content</p>
+            </div>
+          </div>
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#quizHeroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#quizHeroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-container" *ngIf="isLoading">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Loading quizzes...</p>
+    </div>
+
+    <!-- Success State -->
+    <div class="row" *ngIf="!isLoading && !errorMessage && filteredQuizzes">
+      <div *ngFor="let item of filteredQuizzes">
+        <mat-card class="mb-20 quiz-card">
+          <mat-card-header>
+            <div mat-card-avatar class="quiz-avatar"></div>
+            <mat-card-title>
+              {{ item.title }}
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p class="truncate clamp-text">{{ item.description }}</p>
+          </mat-card-content>
+
+          <mat-card-actions class="action-buttons">
+            <button mat-raised-button [routerLink]="'/user-dashboard/instruction/'+item.qid"
+              routerLinkActive="router-link-active">Start Quiz</button>
+            <div class="meta-buttons">
+              <button mat-stroked-button>
+                📝Questions: {{ item.numberOfQuestions }}
+              </button>
+              <button mat-stroked-button>⭐Marks: {{ item.maxMarks }}</button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+      <div *ngIf="filteredQuizzes.length == 0 && !searchQuery">
+        <mat-card class="no-data-card">
+          <mat-card-content>
+            <h1>🎯 No Quizzes Available</h1>
+            <p>There are no quizzes in this category yet. Check back later!</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div *ngIf="filteredQuizzes.length == 0 && searchQuery">
+        <mat-card class="no-data-card">
+          <mat-card-content>
+            <h1>🔍 No Results Found</h1>
+            <p>No quizzes match your search for "{{ searchQuery }}". Try different keywords.</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
